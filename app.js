@@ -40,8 +40,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
           templateUrl: "templates/normal/tradeWidget.html",
           controller: "tradeCtrl"
         }
-      },
-    });
+      }
+    })
+
+    .state("normal.transactions", {
+      url:"transactions",
+      views: {
+        "trade-widget@" :{
+          templateUrl: "templates/normal/transactionsWidget.html",
+          controller: "transactionsCtrl"
+        }
+      }
+    })
   });
 
 app.run(function($rootScope){

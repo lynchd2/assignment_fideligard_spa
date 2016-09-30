@@ -1,6 +1,4 @@
-{{formData}}
 <div class="col-md-8 trade-widget">
-  <h1>HELLO, TRADE WIDGET!</h2>
   <div class="col-md-8">
     <form ng-submit="makeTransaction(formData)">
       <h3>Symbol: {{symbol}}</h3>
@@ -13,6 +11,8 @@
       <h3>Date: {{date}}</h3></br>
       <h3>Cost: ${{formData.quantity * opening | number : 2}}</h3></br>
       <button class="btn btn-primary" type="submit">Place Order!</button>
+      <a ui-sref="normal.transactions" class="btn btn-success">See All Transactions</a>
+      <a ui-sref="#" class="btn btn-success">See Portfolio</a>
     </form>
   </div>
   <div class="col-md-4">

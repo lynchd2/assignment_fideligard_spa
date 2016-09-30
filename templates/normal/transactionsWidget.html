@@ -1,0 +1,12 @@
+<div class="col-md-8 stocks-available">
+  <table class="table table-inverse table-bordered table-hover">
+      <tr>
+        <th>Date </th>
+        <th>Symbol</th>
+        <th>Type</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+      <tr transaction-row ng-repeat= "transactionObject in transactions"  transaction-object= "transactionObject"></tr>
+  </table>
+</div>

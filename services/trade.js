@@ -1,4 +1,4 @@
-app.factory('tradeService', ["portfolioService", function(portfolioService) { 
+app.factory('tradeService', ["portfolioService", "transactionService", function(portfolioService, transactionService) { 
 
   var makeTransaction = function(formData) {
     if (formData.transactionType === "buy") {
@@ -9,6 +9,7 @@ app.factory('tradeService', ["portfolioService", function(portfolioService) {
     }
   }
 
+  //Look up Angular copy to condense
   var buyStock = function(formData) {
     var dateIndex = formData.dateIndex;
     var quantity = formData.quantity;
@@ -16,6 +17,8 @@ app.factory('tradeService', ["portfolioService", function(portfolioService) {
     var symbol = formData.symbol;
     var opening = formData.opening
     var portfolio = portfolioService.getPortfolio();
+    //Send formData to transasction service to show on TRANSACTION page, not PORTFOLIO PAGE
+    transactionService.makeTransaction(formData)
     if(portfolio["purchased"][symbol] && portfolio["purchased"][symbol][dateIndex]) {
       portfolio["purchased"][symbol][dateIndex]["quantity"] += quantity;
       portfolio.cashOnHand = portfolioService.deductCash((Math.round((quantity * opening) * 100) / 100))
