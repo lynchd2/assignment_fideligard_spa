@@ -11,13 +11,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('normal' , {
       url: '/',
       views: {
-        "dateWidget@": {
+        "date-widget@": {
           templateUrl: "templates/normal/dateWidget.html",
           controller: "dateCtrl"
-        } ,
-        "stocksWidget@": {
+        },
+        "stocks-widget@": {
           templateUrl: "templates/normal/stocksWidget.html",
           controller: "stocksCtrl"
+        },
+
+        "trade-widget@": {
+          template: "",
+          controller: "tradeCtrl"
         }
       },
       resolve: {
@@ -26,12 +31,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }
         ]
       }
+    })
+
+    .state('normal.trade', {
+      url: "/:symbol?opening",
+      views: {
+        "trade-widget@": {
+          templateUrl: "templates/normal/tradeWidget.html",
+          controller: "tradeCtrl"
+        }
+      },
     });
-
-    // .state('normal.trade', {
-
-    // }
-});
+  });
 
 app.run(function($rootScope){
   $rootScope.$on("$stateChangeError", console.log.bind(console));

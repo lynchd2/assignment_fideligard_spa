@@ -1,8 +1,8 @@
-<form ng-submit="testDay()">
+<form ng-submit="submitDate()">
   <input type="submit">
 </form>
 
-<div class="col-md-4">
+<div class="col-md-5">
   <table class="table table-inverse table-bordered table-hover">
       <tr>
         <th>Symbol </th>
@@ -10,6 +10,7 @@
         <th>One Day </th>
         <th>Seven Days</th>
         <th>Thirty Days</th>
+        <th>Trade</th>
       </tr>
       <tr stock-row ng-repeat= "stockObject in stockPrices"  stock-object= "stockObject" trade-day= "day"></tr>
   </table>

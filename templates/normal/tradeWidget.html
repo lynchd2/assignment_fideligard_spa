@@ -1,0 +1,24 @@
+<div class="col-md-7 trade-widget">
+  <h1>HELLO, TRADE WIDGET!</h2>
+  <div class="col-md-8">
+    <form>
+      <h3>Symbol: {{symbol}}</h3></br>
+      Buy/Sell: <select ng-model="formData.transactionType">
+        <option>Buy</option>
+        <option>Sell</option>
+      </select></br></br>
+      <h3>Quantity: <input type="number" min="1" ng-model="formData.quantity"></h3></br>
+      <h3>Date: {{date}}</h3></br>
+      <h3>Price: {{opening | currency}}<h3>
+      <h3>Cost: ${{formData.quantity * opening | number : 2}}</h3></br>
+      </br></br>
+      <button class="btn btn-sucess" type="submit">Place Order!</button>
+    </form>
+  </div>
+  <div class="col-md-4">
+    <h3>Cash Available:</h3></br>
+    Cash here
+    <h3>Order Status: <h3></br>
+    Valid status here
+  </div>
+</div>

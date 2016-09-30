@@ -1,17 +1,20 @@
 <tr>
   <td class="symbol">
-    {{stockObject[3]}}
+    {{symbol}}
   </td>
   <td class="opening">
-    {{stockObject[4]}}
+    {{opening | currency}}
   </td>
   <td class="first-day">
-    {{stockObject[0]}}
+    {{firstDay| currency}}
   </td>
   <td class="seven-day">
-    {{stockObject[1]}}
+    {{sevenDay | currency}}
   </td>
   <td class="thirty-day">
-    {{stockObject[2]}}
+    {{thirtyDay | currency}}
+  </td>
+  <td class="trade-stock">
+    <a ui-sref="normal.trade({symbol: symbol, opening: opening})">Trade</a>
   </td>
 </tr>

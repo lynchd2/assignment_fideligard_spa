@@ -42,25 +42,23 @@
 
 
       <div ui-view></div>
-      <div ui-view="dateWidget">LOADING</div>
-      <div ui-view="stocksWidget">LOADING STOCKS</div>
-
-
-
-
+      <div ui-view="date-widget">LOADING</div>
+      <div ui-view="stocks-widget">LOADING STOCKS</div>
     </div>
+    <div ui-view="trade-widget"></div>
 
     <!--App-->
     <script src="app.js"></script>
     <!-- Services -->
     <script src="services/dateService.js"></script>
     <script src="services/stock.js"></script>
+    <script src="services/trade.js"></script>
     <!--Controllers -->
     <script src="controllers/stocksController.js"></script>
     <script src="controllers/dateController.js"></script>
+    <script src="controllers/tradeController.js"></script>
     <!--Directives -->
     <script src="directives/stockDirective.js"></script>
-
     <!--Filters -->
   </body>
 </html>

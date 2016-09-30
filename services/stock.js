@@ -6,7 +6,7 @@ app.factory('stockService', ['$http', '$q',function($http, $q) {
 
   var _day = 0;
 
-  var _popularStocks = ["AAPL", "GOOGL"]//, "MSFT", "TSLA"];
+  var _popularStocks = ["AAPL", "GOOGL", "MSFT", "TSLA"];
 
   var stub = {};
 
@@ -71,6 +71,25 @@ app.factory('stockService', ['$http', '$q',function($http, $q) {
 
   stub.getDay = function(){
     return _day
+  }
+  stub.getDayAnalytics = function() {
+  var numDays = [1, 7, 30]
+    var symbols = stub.getSymbols();
+    var finalArray = []
+    for(var j = 0; j < symbols.length; j ++) {
+      var array = []
+      var hash = {}
+      for(var i = 0; i < numDays.length; i++) {
+        var initialDay = stub.getCurrentStocks()[symbols[j]][2014].dayListings[stub.getDay()].Close
+        var finalDay = stub.getCurrentStocks()[symbols[j]][2014].dayListings[stub.getDay() - numDays[i]].Close
+        array.push((finalDay - initialDay).toFixed(2));
+      }
+      array.push(symbols[j])
+      array.push(stub.getCurrentStocks()[symbols[j]][2014].dayListings[stub.getDay()].Close)
+      hash[symbols[j]] = array
+      finalArray.push(hash[symbols[j]])
+    }
+    return finalArray;
   }
 
   return stub;
