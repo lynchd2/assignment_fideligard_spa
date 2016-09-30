@@ -18,7 +18,7 @@ app.factory('tradeService', ["portfolioService", function(portfolioService) {
     var portfolio = portfolioService.getPortfolio();
     if(portfolio["purchased"][symbol] && portfolio["purchased"][symbol][dateIndex]) {
       portfolio["purchased"][symbol][dateIndex]["quantity"] += quantity;
-      portfolio.cashOnHand = portfolio.cashOnHand - (Math.round((quantity * opening) * 100) / 100)
+      portfolio.cashOnHand = portfolioService.deductCash((Math.round((quantity * opening) * 100) / 100))
       portfolioService.setPortfolio(portfolio);
     }
     else {
@@ -27,7 +27,7 @@ app.factory('tradeService', ["portfolioService", function(portfolioService) {
       portfolio["purchased"][symbol][dateIndex].quantity = quantity;
       portfolio["purchased"][symbol][dateIndex].date = date;
       portfolio["purchased"][symbol][dateIndex].opening = opening;
-      portfolio.cashOnHand = portfolio.cashOnHand - (Math.round((quantity * opening) * 100) / 100)
+      portfolio.cashOnHand = portfolioService.deductCash((Math.round((quantity * opening) * 100) / 100))
       portfolioService.setPortfolio(portfolio);
     }
   }
