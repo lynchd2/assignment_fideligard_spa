@@ -1,25 +1,16 @@
-<table class="table table-inverse table-bordered table-hover">
-  <th>
-    <tr>
-      <td>
-        Symbol
-      </td>
-      <td>
-        Date
-      </td>
-      <td>
-        Open
-      </td>
-      <td>
-        Close
-      </td>
-      <td>
-        <a>trade button</a>
-      </td>
-    </tr>
-  </th>
-  <tbody>
-    <stock-row ng-rpeat="stock in stocks"></stock-row>
-  </tbody>
+<form ng-submit="testDay()">
+  <input type="submit">
+</form>
 
-</table>
+<div class="col-md-4">
+  <table class="table table-inverse table-bordered table-hover">
+      <tr>
+        <th>Symbol </th>
+        <th>First Day</th>
+        <th>One Day </th>
+        <th>Seven Days</th>
+        <th>Thirty Days</th>
+      </tr>
+      <tr stock-row ng-repeat= "stockObject in stockPrices"  stock-object= "stockObject" trade-day= "day"></tr>
+  </table>
+</div>
