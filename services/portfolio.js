@@ -3,9 +3,8 @@ app.factory('portfolioService', [function() {
   var _cashOnHand = 1000;
   var _portfolio = 
   {"cashOnHand" :_cashOnHand,
-
-
-}
+  "purchased": {}
+  }
   var getCash = function() {
     return _cashOnHand
   }
@@ -22,10 +21,15 @@ app.factory('portfolioService', [function() {
     return _portfolio;
   }
 
+  var setPortfolio = function(newPortfolio) {
+    _portfolio = newPortfolio;
+  }
+
   return {
     getCash: getCash,
     deductCash: deductCash,
     addCash: addCash,
-    getPortfolio: getPortfolio
+    getPortfolio: getPortfolio,
+    setPortfolio: setPortfolio
   }
 }]);
