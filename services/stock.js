@@ -19,7 +19,7 @@ app.factory('stockService', ['$http', '$q',function($http, $q) {
     var append = "%20select%20*%20from%20yahoo.finance.historicaldata%20" +
     "where%20symbol%20=%20"+
     "%22"+ symb + "%22%20" +
-    "and%20startDate%20=%20%22"+ year + "-01-01%22%20" +
+    "and%20startDate%20=%20%22"+ (year - 1) + "-11-20%22%20" +
     "and%20endDate%20=%20%22" + year + "-12-31%22%20" +
     "&format=json%20" +
     "&diagnostics=true%20" +
@@ -73,7 +73,8 @@ app.factory('stockService', ['$http', '$q',function($http, $q) {
     return _day
   }
   stub.getDayAnalytics = function() {
-  var numDays = [1, 7, 30]
+  //Need to figure out accurate calender day
+  var numDays = [-1, -5, -25]
     var symbols = stub.getSymbols();
     var finalArray = []
     for(var j = 0; j < symbols.length; j ++) {

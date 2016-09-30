@@ -6,3 +6,19 @@
   border: 1px solid black;
   font-family:"Lucida Console, Monaco, monospace";
 }
+
+.cash-on-hand {
+  color:#216C2A;
+}
+
+.status-Invalid {
+  color:red;
+}
+
+.status-Valid {
+  color:#216C2A;
+}
+
+.stocks-available {
+  font-size:13.5px;
+}
