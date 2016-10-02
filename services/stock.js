@@ -74,7 +74,7 @@ app.factory('stockService', ['$http', '$q',function($http, $q) {
   }
   stub.getDayAnalytics = function() {
   //Need to figure out accurate calender day
-  var numDays = [-1, -5, -20]
+  var numDays = [-1, -5, -23]
     var symbols = stub.getSymbols();
     var finalArray = []
     for(var j = 0; j < symbols.length; j ++) {

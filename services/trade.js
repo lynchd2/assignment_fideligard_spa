@@ -25,8 +25,8 @@ app.factory('tradeService', ["portfolioService", "transactionService", function(
       portfolioService.setPortfolio(portfolio);
     }
     else {
-      portfolio["purchased"][symbol] = {};
-      portfolio["purchased"][symbol][dateIndex] = {};
+      portfolio["purchased"][symbol] = portfolio["purchased"][symbol] || {};
+      portfolio["purchased"][symbol][dateIndex] = portfolio["purchased"][symbol][dateIndex] ||  {};
       portfolio["purchased"][symbol][dateIndex].quantity = quantity;
       portfolio["purchased"][symbol][dateIndex].date = date;
       portfolio["purchased"][symbol][dateIndex].opening = opening;
@@ -37,9 +37,10 @@ app.factory('tradeService', ["portfolioService", "transactionService", function(
 
   var sellStock = function(formData) {
     var portfolio = portfolioService.getPortfolio();
-    for(var keys in portfolio["purchased"][formData.symbol]) {
-      //Logic goes here for sell stock
-    }
+    console.log(portfolio)
+    // for(var key in portfolio["purchased"][formData.symbol]) {
+    //   console.log(portfolio["purchased"][formData.symbol])
+    // }
   }
 
   var checkForBought = function(formData) {
