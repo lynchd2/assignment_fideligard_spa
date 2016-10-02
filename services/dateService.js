@@ -1,14 +1,19 @@
 app.factory('dateService', [function() {
 
-  var _min;
-  var _max;
+  var _lastDate = -1
 
-  var stub = {};
-
-  stub.storeMinMax = function(min, max) {
-    _min = min;
-    _max = max;
+  var storeDateIndex = function(date) {
+    _lastDate = 251 - date;
   }
 
-  return stub;
+  var getDateIndex = function() {
+    return _lastDate;
+  }
+
+  return {
+    storeDateIndex: storeDateIndex,
+    getDateIndex: getDateIndex
+  }
+
+
 }]);

@@ -11,7 +11,21 @@ app.controller("tradeCtrl", ["$scope", 'dateService', "stockService", "portfolio
 
   //Making a transaction
   $scope.makeTransaction = function(formData) {
-    //If you do not have enough cash
+    //Prep the formData for making transaction
+    $scope.formData.opening = $scope.opening;
+    $scope.formData.symbol = $scope.symbol;
+    $scope.formData.dateIndex = stockService.getDay();
+    $scope.formData.date = $scope.date;
+    //Determine buy or sell
+    if(formData.transactionType === "buy") {
+      $scope.makeBuyTransaction($scope.formData)
+    }
+    else {
+      console.log("SELL!")
+    }
+  }
+
+  $scope.makeBuyTransaction = function(formData) {
     if(formData.quantity * $scope.opening > $scope.cash) {
       $scope.status = "Invalid"
     }
@@ -19,13 +33,8 @@ app.controller("tradeCtrl", ["$scope", 'dateService', "stockService", "portfolio
       $scope.status = "Valid";
       //Confirms if person wants to make a transaction
       if(confirm("Do you want to make that transaction?")) {
-        //Prep the formData for making transaction
-        $scope.formData.opening = $scope.opening;
-        $scope.formData.symbol = $scope.symbol;
-        $scope.formData.dateIndex = stockService.getDay();
-        $scope.formData.date = $scope.date;
         //Send formData to the trade service to make the trade, whether it is buy or sell
-        tradeService.makeTransaction($scope.formData);
+        tradeService.makeTransaction(formData);
         $scope.cash = portfolioService.getPortfolio()['cashOnHand'];
         console.log("Transaction Processed!");
       }  

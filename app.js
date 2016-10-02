@@ -20,7 +20,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
           controller: "stocksCtrl"
         },
 
-        "trade-widget@": {
+        "trade-widget": {
           template: "",
           controller: "tradeCtrl"
         }

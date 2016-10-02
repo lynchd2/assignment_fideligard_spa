@@ -5,8 +5,15 @@ app.controller("stocksCtrl",
   $scope.allStocks = stocks;
 
   $scope.submitDate = function() {
-    $scope.day = stockService.getDay();
-    $scope.getDayAnalytics();
+    if(dateService.getDateIndex() <= (251 - stockService.getDay())) {
+      $scope.day = stockService.getDay()
+      $scope.getDayAnalytics();
+      dateService.storeDateIndex($scope.day);
+    }
+    else {
+      alert("You cannot travel back in time! Go back to " + stockService.getDate(dateService.getDateIndex()) + " to start trading again.");
+    }
+    
   }
 
   $scope.getDayAnalytics = function(){
