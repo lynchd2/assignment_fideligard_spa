@@ -21,7 +21,7 @@ app.controller("tradeCtrl", ["$scope", 'dateService', "stockService", "portfolio
       $scope.makeBuyTransaction($scope.formData)
     }
     else {
-      console.log("SELL!")
+      tradeService.sellStock(formData);
     }
   }
 

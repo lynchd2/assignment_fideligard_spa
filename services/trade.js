@@ -36,7 +36,10 @@ app.factory('tradeService', ["portfolioService", "transactionService", function(
   }
 
   var sellStock = function(formData) {
-
+    var portfolio = portfolioService.getPortfolio();
+    for(var keys in portfolio["purchased"][formData.symbol]) {
+      //Logic goes here for sell stock
+    }
   }
 
   var checkForBought = function(formData) {
@@ -44,7 +47,8 @@ app.factory('tradeService', ["portfolioService", "transactionService", function(
   }
 
   return {
-    makeTransaction: makeTransaction
+    makeTransaction: makeTransaction,
+    sellStock: sellStock
   }
 }]);
 
