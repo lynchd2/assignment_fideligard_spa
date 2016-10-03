@@ -65,6 +65,10 @@ app.factory('stockService', ['$http', '$q',function($http, $q) {
     return _stocks["AAPL"][2014]["dayListings"][251 - day]["Date"];
   };
 
+  stub.getCurrentValue = function(symbol, day) {
+    return _stocks[symbol][2014]["dayListings"][251 - day].Close;
+  }
+
   stub.setDay = function(dayIndex){
     _day = 251 - dayIndex;
   };
@@ -90,6 +94,24 @@ app.factory('stockService', ['$http', '$q',function($http, $q) {
       hash[symbols[j]] = array
       finalArray.push(hash[symbols[j]])
     }
+    return finalArray;
+  }
+
+  stub.getThisDayAnalytics = function(symbol) {
+  //Need to figure out accurate calender day
+  var numDays = [-1, -5, -23]
+  var finalArray = []
+  var array = []
+  var hash = {}
+    for(var i = 0; i < numDays.length; i++) {
+      var initialDay = stub.getCurrentStocks()[symbol][2014].dayListings[stub.getDay()].Close
+      var finalDay = stub.getCurrentStocks()[symbol][2014].dayListings[stub.getDay() - numDays[i]].Close
+      array.push((finalDay - initialDay).toFixed(2));
+    }
+    array.push(symbol)
+    array.push(stub.getCurrentStocks()[symbol][2014].dayListings[stub.getDay()].Close)
+    hash[symbol] = array
+    finalArray.push(hash[symbol])
     return finalArray;
   }
 

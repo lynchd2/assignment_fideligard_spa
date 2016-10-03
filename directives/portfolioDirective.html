@@ -3,24 +3,29 @@
     {{symbol()}}
   </td>
   <td class="quantity">
-    {{quantity()}}
+    {{quantity}}
   </td>
   <td class="cost-basis">
-    {{costBasis() | currency}}
+    {{costBasis | currency}}
   </td>
-<!--   <td class="current-value">
+  <td class="current-value">
     {{currentValue | currency}}
   </td>
   <td class="profit-loss">
     {{profitLoss | currency}}
   </td>
+  <td class="current-price">
+    {{currentPrice | currency}}
+  </td>
   <td class="one-day">
     {{oneDay | currency}}
   </td>
   <td class="seven-days">
-    {{SevenDays | currency}}
+    {{sevenDays | currency}}
   </td>
   <td class="thiry-days">
-    {{ThirtyDays | currency}}
-  </td> -->
+    {{thirtyDays | currency}}
+  </td>
+  <td clas="trade">
+    <a ui-sref="normal.trade({symbol: symbol(), opening: currentPrice})">Trade</a>
 </tr>
