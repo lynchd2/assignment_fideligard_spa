@@ -31,6 +31,7 @@ app.factory('tradeService', ["portfolioService", "transactionService", function(
       portfolio["purchased"][symbol][dateIndex].quantity = quantity;
       portfolio["purchased"][symbol][dateIndex].date = date;
       portfolio["purchased"][symbol][dateIndex].opening = opening;
+      portfolio["purchased"][symbol][dateIndex].symbol = symbol;
       portfolio.cashOnHand = portfolioService.deductCash((Math.round((quantity * opening) * 100) / 100))
       //Overwrite old portfolio with new one.
       portfolioService.setPortfolio(portfolio);
@@ -38,6 +39,7 @@ app.factory('tradeService', ["portfolioService", "transactionService", function(
   }
 
   var sellStock = function(formData) {
+    console.log("test")  
     var totalAsked = formData.quantity;
     var totalOwned = 0
     var portfolio = portfolioService.getPortfolio();
@@ -52,23 +54,33 @@ app.factory('tradeService', ["portfolioService", "transactionService", function(
     //When you do have enough stock
     else {
       portfolio.cashOnHand = portfolioService.addCash((Math.round((formData.quantity * formData.opening) * 100) / 100))
-      portfolioService.setPortfolio(portfolio);
       //Send sell transaction to transaction service to show on transaction page.
       transactionService.makeTransaction(formData)
       //Until you sell all you have asked for
-      while(totalAsked > 0) { 
-        for(var key in portfolio["purchased"][formData.symbol]) {
+      for(var key in portfolio["purchased"][formData.symbol]) {
+        while(totalAsked > 0) { 
           //If the day for this purchased stock is greater or equal to what you asked for, sell it off.
           if(portfolio["purchased"][formData.symbol][key].quantity >= totalAsked) {
+            console.log("More quantity")
             //Store quantity in temp since it changes
             var temp = portfolio["purchased"][formData.symbol][key].quantity;
-            console.log(temp);
             portfolio["purchased"][formData.symbol][key].quantity -= totalAsked;
             totalAsked -= temp;
+          }
+          //No more stock left
+          else if(portfolio["purchased"][formData.symbol][key].quantity === 0) {
+            break;
+          }
+          //If the quantity is less than what you asked
+          else {
+            var temp = portfolio["purchased"][formData.symbol][key].quantity;
+            portfolio["purchased"][formData.symbol][key].quantity -= temp;
+            totalAsked -= temp; 
           }
         }
       }
     }
+    console.log(portfolio)
     portfolioService.setPortfolio(portfolio);
   }
 
@@ -94,9 +106,3 @@ app.factory('tradeService', ["portfolioService", "transactionService", function(
 //       }
 
 //   }
-
-//   sell: {
-//     "GOOGL" : 
-
-//   }
-// }

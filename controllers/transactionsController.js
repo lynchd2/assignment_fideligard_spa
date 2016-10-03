@@ -1,6 +1,4 @@
-app.controller("transactionsCtrl", ["$scope", "portfolioService", "tradeService", "transactionService", "$stateParams", function($scope, portfolioService, tradeService, transactionService, $stateParams) {
-
-  $scope.test = "Hello, world!";
+app.controller("transactionsCtrl", ["$scope","transactionService", "$stateParams", function($scope, transactionService, $stateParams) {
 
   $scope.transactions = transactionService.getTransactions();
 }]);

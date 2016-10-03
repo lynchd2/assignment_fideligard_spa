@@ -28,11 +28,21 @@ app.factory('portfolioService', [function() {
     _portfolio = newPortfolio;
   }
 
+  var getStockObjects = function() {
+    var stockObjectArray = []
+    for(var symbol in this.getPortfolio()["purchased"] ) { 
+      var ob = {}
+      stockObjectArray.push(this.getPortfolio()["purchased"][symbol])
+    }
+    return stockObjectArray;
+  }
+
   return {
     getCash: getCash,
     deductCash: deductCash,
     addCash: addCash,
     getPortfolio: getPortfolio,
-    setPortfolio: setPortfolio
+    setPortfolio: setPortfolio,
+    getStockObjects: getStockObjects
   }
 }]);

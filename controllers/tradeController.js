@@ -2,7 +2,7 @@ app.controller("tradeCtrl", ["$scope", 'dateService', "stockService", "portfolio
 
   //Acquire params
   $scope.opening = $stateParams["opening"];
-  $scope.symbol = $stateParams["symbol"]
+  $scope.symbol = $stateParams["symbol"];
 
   //Set date, current cash and formData attributes
   $scope.date = stockService.getDate(251 - stockService.getDay());
@@ -19,15 +19,36 @@ app.controller("tradeCtrl", ["$scope", 'dateService', "stockService", "portfolio
     //Determine buy or sell
     if(formData.transactionType === "buy") {
       $scope.makeBuyTransaction($scope.formData)
+      $scope.formData = {"transactionType": "buy"}
+    }
+    else if (formData.transactionType === 'sell') {
+      //Make sell transaction
+      $scope.makeSellTransaction($scope.formData)
+      $scope.formData = {"transactionType": "sell"}
+    }
+    
+  }
+
+  $scope.makeSellTransaction = function(formData) {
+    if(formData.quantity  === undefined) {
+      $scope.status = "Invalid"
     }
     else {
-      tradeService.sellStock(formData);
+      if (confirm("Do you want to make that transaction?")) {
+      //Make a service method that checks the total owned for a particular stock
+        tradeService.sellStock(formData);
+        $scope.cash = portfolioService.getPortfolio()['cashOnHand'];
+        $scope.status = "Valid"
+      }
     }
   }
 
   $scope.makeBuyTransaction = function(formData) {
-    if(formData.quantity * $scope.opening > $scope.cash) {
-      $scope.status = "Invalid"
+    if (formData.quantity  === undefined) {
+      $scope.status = "Invalid";
+    }
+    else if (formData.quantity * $scope.opening > $scope.cash) {
+      $scope.status = "Invalid";
     }
     else {
       $scope.status = "Valid";

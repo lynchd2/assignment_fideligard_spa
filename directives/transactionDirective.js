@@ -7,7 +7,6 @@ app.directive("transactionRow", ['transactionService', function(transactionServi
       transactionObject: "=",
     },
     link: function(scope){
-      console.log(scope.transactionObject)
       scope.date = scope.transactionObject.date;
       scope.price = scope.transactionObject.opening;
       scope.quantity = scope.transactionObject.quantity;

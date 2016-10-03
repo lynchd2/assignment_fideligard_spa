@@ -20,7 +20,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
           controller: "stocksCtrl"
         },
 
-        "trade-widget": {
+        "trade-widget@": {
           template: "",
           controller: "tradeCtrl"
         }
@@ -49,6 +49,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
         "trade-widget@" :{
           templateUrl: "templates/normal/transactionsWidget.html",
           controller: "transactionsCtrl"
+        }
+      }
+    })
+    .state("normal.portfolio", {
+      url:"portfolio",
+      views: {
+        "trade-widget@" :{
+          templateUrl: "templates/normal/portfolioWidget.html",
+          controller: "portfolioCtrl"
         }
       }
     })

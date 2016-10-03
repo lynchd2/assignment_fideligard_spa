@@ -1,0 +1,17 @@
+<div class="col-md-8 stocks-available">
+  <table class="table table-inverse table-bordered table-hover">
+      <tr>
+        <th>Symbol </th>
+        <th>Quantity</th>
+        <th>Cost Basis</th>
+        <th>Current Value</th>
+        <th>Profit/Loss</th>
+        <th>Current Price</th>
+        <th>One Day</th>
+        <th>Seven Days</th>
+        <th>Thirty Days</th>
+        <th>Trade?</th>
+      </tr>
+      <tr portfolio-row ng-repeat="symbolObject in symbolObjetsInArray" symbol-object= "symbolObject" cash="cash"></tr>
+  </table>
+</div>

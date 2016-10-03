@@ -7,6 +7,6 @@
         <th>Quantity</th>
         <th>Price</th>
       </tr>
-      <tr transaction-row ng-repeat= "transactionObject in transactions"  transaction-object= "transactionObject"></tr>
+      <tr transaction-row ng-repeat= "transactionObject in transactions track by $index"  transaction-object= "transactionObject"></tr>
   </table>
 </div>
