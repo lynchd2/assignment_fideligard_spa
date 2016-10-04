@@ -81,24 +81,29 @@ app.factory('stockService', ['$http', '$q',function($http, $q) {
   var numDays = [-1, -5, -23]
     var symbols = stub.getSymbols();
     var finalArray = []
+    //Go through all the symbols
     for(var j = 0; j < symbols.length; j ++) {
       var array = []
       var hash = {}
+      //Go through 1, 7 and 30 days ago
       for(var i = 0; i < numDays.length; i++) {
+        //Get initial day and get final day
         var initialDay = stub.getCurrentStocks()[symbols[j]][2014].dayListings[stub.getDay()].Close
         var finalDay = stub.getCurrentStocks()[symbols[j]][2014].dayListings[stub.getDay() - numDays[i]].Close
+        //Push to the final array the final amount
         array.push((finalDay - initialDay).toFixed(2));
       }
+      //Also push the symbol and the close amount
       array.push(symbols[j])
       array.push(stub.getCurrentStocks()[symbols[j]][2014].dayListings[stub.getDay()].Close)
       hash[symbols[j]] = array
       finalArray.push(hash[symbols[j]])
     }
+    //Return final array
     return finalArray;
   }
 
   stub.getThisDayAnalytics = function(symbol) {
-  //Need to figure out accurate calender day
   var numDays = [-1, -5, -23]
   var finalArray = []
   var array = []
