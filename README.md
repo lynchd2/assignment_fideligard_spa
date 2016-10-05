@@ -1,27 +1,6 @@
-# assignment_fideligard_spa
-Buy low, sell high.
-
 [An AngularJS JavaScript single-page web application using services, directives, ui-router, and good modular code to create a stock portfolio simulator using Yahoo's finance trading data](http://www.vikingcodeschool.com)
 
-Authors:
+Author: Dylan Lynch
 
-Dylan, Johnny, Adrian
-
-PSEUDO-CODE:
-
-
-Widgets:
-  Date
-    min, max date
-
-  Stocks
-    filter
-    Data Table
-
-  Portfolio Widget
-    Calculations table
-
-    Data Table
-
-Clicking Trade:
-  brings you to trade page.
+*Using the Yahoo Finance API to gather data, buy and sell stocks from the year 2014 using (virtual and fake) money!
+* Developed using AngularJS.

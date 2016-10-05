@@ -52,6 +52,7 @@ app.factory('tradeService', ["portfolioService", "transactionService", function(
       alert("You do not have " + totalAsked + " shares in " + formData.symbol+ ". You only have " + totalOwned);
     }
     //When you do have enough stock
+
     else {
       portfolio.cashOnHand = portfolioService.addCash((Math.round((formData.quantity * formData.opening) * 100) / 100))
       //Send sell transaction to transaction service to show on transaction page.

@@ -10,7 +10,7 @@ app.directive("portfolioRow", ['portfolioService', "stockService", function(port
 
     link: function(scope){
 
-      scope.symbol = function() {
+      scope.symbol = function() { 
         var symbols = []
         for(var keys in scope.symbolObject) {
           symbols.push(scope.symbolObject[keys].symbol);
